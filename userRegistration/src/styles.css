@@ -1,0 +1,45 @@
+/* You can add global styles to this file, and also import other style files */
+/* ===== SIDEBAR DEFAULT ===== */
+.sidebar {
+  position: fixed;
+  top: 60px;
+  left: 0;
+  bottom: 0;
+  width: 300px;
+  background: #fff;
+  transition: all 0.3s ease;
+  z-index: 996;
+}
+
+/* ===== MAIN CONTENT ===== */
+#main {
+  margin-top: 60px;
+  margin-left: 300px;
+  transition: all 0.3s ease;
+}
+
+/* ===== DESKTOP TOGGLE ===== */
+@media (min-width: 1200px) {
+  body.toggle-sidebar .sidebar {
+    left: -300px;
+  }
+
+  body.toggle-sidebar #main {
+    margin-left: 0;
+  }
+}
+
+/* ===== MOBILE ===== */
+@media (max-width: 1199px) {
+  .sidebar {
+    left: -300px;
+  }
+
+  #main {
+    margin-left: 0;
+  }
+
+  body.toggle-sidebar .sidebar {
+    left: 0;
+  }
+}

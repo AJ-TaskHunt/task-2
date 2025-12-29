@@ -1,0 +1,78 @@
+<div class="container min-vh-100 d-flex align-items-center justify-content-center">
+  <div class="col-md-5 col-lg-4">
+    <div class="card shadow-lg border-0 rounded-4">
+      <div class="card-header bg-primary text-white text-center rounded-top-4">
+        <h3 class="mb-0">Customer Login</h3>
+        <small>Welcome back! Please login</small>
+      </div>
+
+      <div class="card-body p-4">
+        <form [formGroup]="loginForm">
+          <!-- USERNAME -->
+          <div class="mb-3">
+            <label class="form-label">Email or Mobile</label>
+            <div class="input-group">
+              <span class="input-group-text">
+                <i class="bi bi-person"></i>
+              </span>
+              <input
+                type="text"
+                class="form-control"
+                formControlName="username"
+                placeholder="Enter email or mobile"
+                [class.is-invalid]="hasError('username')"
+              />
+            </div>
+
+            <div class="invalid-feedback d-block" *ngIf="hasError('username', 'required')">
+              Email or Mobile is required
+            </div>
+
+            <div class="invalid-feedback d-block" *ngIf="hasError('username', 'emailOrMobile')">
+              Enter valid Email or 10-digit Mobile number
+            </div>
+          </div>
+
+          <!-- PASSWORD -->
+          <div class="mb-3">
+            <label class="form-label">Password</label>
+            <div class="input-group">
+              <span class="input-group-text">
+                <i class="bi bi-lock"></i>
+              </span>
+              <input
+                type="password"
+                class="form-control"
+                formControlName="passwordHash"
+                placeholder="Enter password"
+                [class.is-invalid]="hasError('passwordHash')"
+              />
+            </div>
+
+            <div class="invalid-feedback d-block" *ngIf="hasError('passwordHash')">
+              Password is required
+            </div>
+          </div>
+
+          <!-- FORGOT PASSWORD -->
+          <div class="d-flex justify-content-between align-items-center mb-3">
+            <a href="#" class="small text-decoration-none">Forgot password?</a>
+          </div>
+
+          <!-- LOGIN BUTTON -->
+          <button type="button" class="btn btn-success w-100 py-2" (click)="onLogin()">
+            Login
+          </button>
+        </form>
+
+        <!-- REGISTER INFO -->
+        <div class="text-center mt-4">
+          <span class="text-muted">New here?</span>
+          <a routerLink="/register" class="fw-semibold text-decoration-none ms-1">
+            Create an account
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

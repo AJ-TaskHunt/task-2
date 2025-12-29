@@ -1,0 +1,280 @@
+<div id="customerFormTop" class="container-fluid">
+  <!-- ================= ADD CUSTOMER (TOP) ================= -->
+  <div class="card mb-4">
+    <div class="card-header bg-primary text-white">
+      <h5 class="mb-0">
+        {{ isEditMode ? 'Update Customer' : 'Add Customer' }}
+      </h5>
+    </div>
+
+    <div class="card-body">
+      <form [formGroup]="AddOrUpdateCustomerForm">
+        <div class="row g-3">
+          <!-- LEFT : IMAGE -->
+          <div class="col-md-3 text-center border-end">
+            <label for="profileImage" class="form-label fw-semibold d-block">Profile Image</label>
+
+            <!-- Placeholder -->
+            <div
+              *ngIf="!imagePreview"
+              class="rounded-circle d-flex align-items-center justify-content-center bg-light border"
+              style="width: 150px; height: 150px"
+            >
+              <i class="bi bi-person-fill text-secondary" style="font-size: 70px"></i>
+            </div>
+
+            <!-- Preview -->
+            <img
+              *ngIf="imagePreview"
+              [src]="imagePreview"
+              class="img-thumbnail rounded-circle"
+              width="150"
+              height="150"
+              ,
+              alt=""
+            />
+
+            <input
+              #fileInput
+              type="file"
+              class="form-control mt-2"
+              accept=".jpg,.jpeg,.png"
+              (change)="onImageSelect($event)"
+            />
+
+            <small class="text-danger d-block mt-1" *ngIf="imageError">
+              {{ imageError }}
+            </small>
+          </div>
+
+          <!-- RIGHT : FORM -->
+          <div class="col-md-9">
+            <div class="row g-3">
+              <!-- NAME -->
+              <div class="col-md-4">
+                <label for="name" class="form-label">Name</label>
+                <input class="form-control" formControlName="name" />
+                <small class="text-danger" *ngIf="hasError('name')"> Name is required </small>
+              </div>
+
+              <!-- EMAIL -->
+              <div class="col-md-4">
+                <label for="email" class="form-label">Email</label>
+                <input
+                  class="form-control"
+                  formControlName="email"
+                  (keyup)="onKeyUpEmailMobile()"
+                />
+                <small class="text-danger" *ngIf="hasError('email')">
+                  <span *ngIf="hasError('email', 'required')">Email is required</span>
+                  <span *ngIf="hasError('email', 'email')">Invalid email format</span>
+                </small>
+                <small class="text-danger" *ngIf="emailExists"> Email already registered </small>
+              </div>
+
+              <!-- MOBILE -->
+              <div class="col-md-4">
+                <label for="mobile" class="form-label">Mobile</label>
+                <input
+                  class="form-control"
+                  formControlName="mobile"
+                  (keyup)="onKeyUpEmailMobile()"
+                />
+                <small class="text-danger" *ngIf="hasError('mobile')">
+                  <span *ngIf="hasError('mobile', 'required')">Mobile is required</span>
+                  <span *ngIf="hasError('mobile', 'pattern')">Must be 10 digits</span>
+                </small>
+                <small class="text-danger" *ngIf="mobileExists"> Mobile already registered </small>
+              </div>
+
+              <!-- ADDRESS -->
+              <div class="col-md-6">
+                <label for="address" class="form-label">Address</label>
+                <textarea class="form-control" rows="2" formControlName="address"></textarea>
+                <small class="text-danger" *ngIf="hasError('address', 'required')">
+                  Address is required
+                </small>
+              </div>
+
+              <!-- POSTCODE -->
+              <div class="col-md-3">
+                <label for="postcode" class="form-label">Post Code</label>
+                <input class="form-control" formControlName="postcode" />
+                <small class="text-danger" *ngIf="hasError('postcode')">
+                  <span *ngIf="hasError('postcode', 'required')">Post code is required</span>
+                  <span *ngIf="hasError('postcode', 'pattern')">Must be 6 digits</span>
+                </small>
+              </div>
+
+              <!-- GENDER -->
+              <div class="col-md-3">
+                <label for="gender" class="form-label d-block">Gender</label>
+
+                <div class="form-check form-check-inline">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    value="Male"
+                    formControlName="gender"
+                  />
+                  <label for="male" class="form-check-label">Male</label>
+                </div>
+
+                <div class="form-check form-check-inline">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    value="Female"
+                    formControlName="gender"
+                  />
+                  <label for="female" class="form-check-label">Female</label>
+                </div>
+                <small class="text-danger d-block" *ngIf="hasError('gender', 'required')">
+                  Please select gender
+                </small>
+              </div>
+
+              <!-- PASSWORD -->
+              <!-- <div class="col-md-4">
+                <label class="form-label">Password</label>
+                <input type="password" class="form-control" formControlName="passwordHash" />
+                <small class="text-danger" *ngIf="hasError('passwordHash')">
+                  Password is required
+                </small>
+              </div> -->
+
+              <!-- IS ACTIVE -->
+              <div class="col-md-12">
+                <div class="form-check mt-2">
+                  <input class="form-check-input" type="checkbox" formControlName="isActive" />
+                  <label for="IsActive" class="form-check-label">Is Active</label>
+                </div>
+              </div>
+            </div>
+
+            <!-- BUTTONS -->
+            <div class="mt-4 text-end">
+              <!-- SAVE (ADD MODE) -->
+              <button
+                *ngIf="!isEditMode"
+                class="btn btn-primary me-2"
+                type="button"
+                (click)="addCustomerData()"
+                [disabled]="emailExists || mobileExists"
+              >
+                Save
+              </button>
+
+              <!-- UPDATE (EDIT MODE) -->
+              <button
+                *ngIf="isEditMode"
+                class="btn btn-success me-2"
+                [disabled]="emailExists || mobileExists"
+                type="button"
+                (click)=" addCustomerData()"
+              >
+                Update
+              </button>
+
+              <!-- RESET (ADD MODE) -->
+              <button
+                *ngIf="!isEditMode"
+                class="btn btn-outline-secondary"
+                type="button"
+                (click)="onReset()"
+              >
+                Reset
+              </button>
+
+              <!-- CANCEL (EDIT MODE) -->
+              <button
+                *ngIf="isEditMode"
+                class="btn btn-outline-danger"
+                type="button"
+                (click)="onCancel()"
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ================= CUSTOMER TABLE (BOTTOM) ================= -->
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title mb-3">Customer List</h5>
+
+          <div class="table-responsive">
+            <!-- datatable
+            [dtOptions]="dtOptions" -->
+            <table class="table table-bordered table-striped align-middle">
+              <thead class="table-light">
+                <tr>
+                  <th>#</th>
+                  <th>Name</th>
+                  <th>Address</th>
+                  <th>Email</th>
+                  <th>Gender</th>
+                  <th>Mobile</th>
+                  <th>Create Date</th>
+                  <th>Image</th>
+                  <th>Status</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                @for (cust of (customerList$ | async) ?? []; track cust.customerId) {
+                <tr>
+                  <td>{{ cust.customerId }}</td>
+                  <td>{{ cust.name }}</td>
+                  <td>{{ cust.address }}</td>
+                  <td>{{ cust.email }}</td>
+                  <td>{{ cust.gender }}</td>
+                  <td>{{ cust.mobile }}</td>
+                  <td>{{ cust.createDate | date : 'dd-MM-yyyy' }}</td>
+
+                  <td>
+                    <img
+                      *ngIf="cust.profileImage; else noImg"
+                      [src]="'http://localhost:5084/images/' + cust.profileImage"
+                      width="40"
+                        height="40"
+                      class="rounded-circle"
+                      alt="profileImage"
+                    />
+                    <ng-template #noImg>N/A</ng-template>
+                  </td>
+
+                  <td>
+                    <span
+                      class="badge"
+                      [class.bg-success]="cust.isActive"
+                      [class.bg-danger]="!cust.isActive"
+                    >
+                      {{ cust.isActive ? 'Active' : 'Inactive' }}
+                    </span>
+                  </td>
+
+                  <td>
+                    <button class="btn btn-primary btn-sm me-2" (click)="onUpdate(cust.customerId)">
+                      Edit
+                    </button>
+
+                    <button class="btn btn-danger btn-sm" (click)="deleteCustomerDataById(cust.customerId)">Delete</button>
+                  </td>
+                </tr>
+                }
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

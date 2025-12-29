@@ -1,0 +1,149 @@
+<div class="container min-vh-100 d-flex align-items-center justify-content-center">
+  <div class="col-lg-10">
+    <div class="card shadow border-0 rounded-4">
+      <!-- HEADER -->
+      <div class="card-header bg-warning text-dark text-center rounded-top-4 py-3">
+        <h3 class="mb-0">Edit Customer</h3>
+        <small>Update your profile details</small>
+      </div>
+
+      <div class="card-body p-4">
+        <form [formGroup]="profileForm">
+          <div class="row">
+            <!-- LEFT : PROFILE IMAGE -->
+            <div class="col-md-4 text-center border-end">
+              <label for="" class="form-label fw-semibold d-block mb-2"> Profile Image </label>
+
+              <!-- IMAGE PREVIEW (EXISTING / NEW) -->
+              <img
+                [src]="imagePreview"
+                class="img-thumbnail rounded-circle shadow-sm"
+                width="170"
+                height="170"
+                alt=""
+              />
+
+              <input
+                type="file"
+                class="form-control mt-2"
+                accept=".jpg,.jpeg,.png"
+                (change)="onImageSelect($event)"
+              />
+
+              <small class="text-muted d-block mt-1"> Leave empty to keep existing image </small>
+              <small class="text-muted d-block mt-1"> JPG / PNG • Max 2MB </small>
+
+              <small class="text-danger d-block mt-1" *ngIf="imageError">
+                {{ imageError }}
+              </small>
+            </div>
+
+            <!-- RIGHT : FORM -->
+            <div class="col-md-8">
+              <!-- NAME -->
+              <div class="mb-3">
+                <label for="" class="form-label fw-semibold">Full Name</label>
+                <input type="text" class="form-control" formControlName="name" />
+                <small class="text-danger" *ngIf="hasError('name')">
+                  <span *ngIf="hasError('name', 'required')">Name is required</span>
+                  <span *ngIf="hasError('name', 'pattern')">Only letters allowed</span>
+                </small>
+              </div>
+
+              <!-- ADDRESS -->
+              <div class="mb-3">
+                <label for="" class="form-label fw-semibold">Address</label>
+                <textarea class="form-control" rows="2" formControlName="address"></textarea>
+                <small class="text-danger" *ngIf="hasError('address', 'required')">
+                  Address is required
+                </small>
+              </div>
+
+              <div class="row">
+                <!-- EMAIL -->
+                <div class="col-md-6 mb-3">
+                  <label for="" class="form-label fw-semibold">Email</label>
+                  <input type="email" class="form-control" formControlName="email"
+                  (keyup)="onKeyUpEmailMobile()" />
+                  <small class="text-danger" *ngIf="hasError('email')">
+                    <span *ngIf="hasError('email', 'required')">Email is required</span>
+                    <span *ngIf="hasError('email', 'email')">Invalid email format</span>
+                  </small>
+                  <small class="text-danger" *ngIf="emailExists"> Email already registered </small>
+                </div>
+
+                <!-- MOBILE -->
+                <div class="col-md-6 mb-3">
+                  <label for="" class="form-label fw-semibold">Mobile</label>
+                  <input type="text" class="form-control" formControlName="mobile"
+                  (keyup)="onKeyUpEmailMobile()" />
+                  <small class="text-danger" *ngIf="hasError('mobile')">
+                    <span *ngIf="hasError('mobile', 'required')">Mobile is required</span>
+                    <span *ngIf="hasError('mobile', 'pattern')">Must be 10 digits</span>
+                  </small>
+                  <small class="text-danger" *ngIf="mobileExists">
+                    Mobile already registered
+                  </small>
+                </div>
+
+                <!-- POSTCODE -->
+                <div class="col-md-6 mb-3">
+                  <label for="" class="form-label fw-semibold">Post Code</label>
+                  <input type="text" class="form-control" formControlName="postcode" />
+                  <small class="text-danger" *ngIf="hasError('postcode')">
+                    <span *ngIf="hasError('postcode', 'required')">Post code is required</span>
+                    <span *ngIf="hasError('postcode', 'pattern')">Must be 6 digits</span>
+                  </small>
+                </div>
+
+                <!-- GENDER -->
+                <div class="col-md-6 mb-3">
+                  <label for="" class="form-label fw-semibold d-block">Gender</label>
+
+                  <div class="form-check form-check-inline">
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      value="Male"
+                      formControlName="gender"
+                    />
+                    <label for="" class="form-check-label">Male</label>
+                  </div>
+
+                  <div class="form-check form-check-inline">
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      value="Female"
+                      formControlName="gender"
+                    />
+                    <label for="" class="form-check-label">Female</label>
+                  </div>
+                  <small class="text-danger d-block" *ngIf="hasError('gender', 'required')">
+                    Please select gender
+                  </small>
+                </div>
+              </div>
+
+              <!-- FOOTER -->
+              <div class="d-flex justify-content-end mt-4">
+                <button
+                  class="btn btn-warning px-4"
+                  type="button"
+                  [disabled]="emailExists || mobileExists"
+                  (click)="onUpdate()"
+                >
+                  Update
+                </button>
+
+                <button class="btn btn-outline-secondary ms-2" type="button" routerLink="/home">
+                  Cancel
+                </button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

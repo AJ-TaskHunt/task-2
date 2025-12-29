@@ -1,0 +1,113 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "E:\\Learning Asp-Angular\\task2\\user registartion\\UserAPI\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{9C87D5E3-7B64-43CF-9C3F-0D40241B7F84}|UserAPI.csproj|e:\\learning asp-angular\\task2\\user registartion\\userapi\\data\\customersdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9C87D5E3-7B64-43CF-9C3F-0D40241B7F84}|UserAPI.csproj|solutionrelative:data\\customersdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9C87D5E3-7B64-43CF-9C3F-0D40241B7F84}|UserAPI.csproj|e:\\learning asp-angular\\task2\\user registartion\\userapi\\controllers\\customercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9C87D5E3-7B64-43CF-9C3F-0D40241B7F84}|UserAPI.csproj|solutionrelative:controllers\\customercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9C87D5E3-7B64-43CF-9C3F-0D40241B7F84}|UserAPI.csproj|e:\\learning asp-angular\\task2\\user registartion\\userapi\\bo\\commonbo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9C87D5E3-7B64-43CF-9C3F-0D40241B7F84}|UserAPI.csproj|solutionrelative:bo\\commonbo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9C87D5E3-7B64-43CF-9C3F-0D40241B7F84}|UserAPI.csproj|e:\\learning asp-angular\\task2\\user registartion\\userapi\\models\\admindbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9C87D5E3-7B64-43CF-9C3F-0D40241B7F84}|UserAPI.csproj|solutionrelative:models\\admindbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9C87D5E3-7B64-43CF-9C3F-0D40241B7F84}|UserAPI.csproj|e:\\learning asp-angular\\task2\\user registartion\\userapi\\data\\admindto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9C87D5E3-7B64-43CF-9C3F-0D40241B7F84}|UserAPI.csproj|solutionrelative:data\\admindto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "CustomersDTO.cs",
+              "DocumentMoniker": "E:\\Learning Asp-Angular\\task2\\user registartion\\UserAPI\\Data\\CustomersDTO.cs",
+              "RelativeDocumentMoniker": "Data\\CustomersDTO.cs",
+              "ToolTip": "E:\\Learning Asp-Angular\\task2\\user registartion\\UserAPI\\Data\\CustomersDTO.cs",
+              "RelativeToolTip": "Data\\CustomersDTO.cs",
+              "ViewState": "AgIAAAoAAAAAAAAAAAAQwBgAAAAyAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-28T17:52:32.005Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "AdminDTO.cs",
+              "DocumentMoniker": "E:\\Learning Asp-Angular\\task2\\user registartion\\UserAPI\\Data\\AdminDTO.cs",
+              "RelativeDocumentMoniker": "Data\\AdminDTO.cs",
+              "ToolTip": "E:\\Learning Asp-Angular\\task2\\user registartion\\UserAPI\\Data\\AdminDTO.cs",
+              "RelativeToolTip": "Data\\AdminDTO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAcAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-28T16:50:55.275Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "AdminDbContext.cs",
+              "DocumentMoniker": "E:\\Learning Asp-Angular\\task2\\user registartion\\UserAPI\\Models\\AdminDbContext.cs",
+              "RelativeDocumentMoniker": "Models\\AdminDbContext.cs",
+              "ToolTip": "E:\\Learning Asp-Angular\\task2\\user registartion\\UserAPI\\Models\\AdminDbContext.cs",
+              "RelativeToolTip": "Models\\AdminDbContext.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAwAAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-28T16:44:07.389Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "CommonBO.cs",
+              "DocumentMoniker": "E:\\Learning Asp-Angular\\task2\\user registartion\\UserAPI\\BO\\CommonBO.cs",
+              "RelativeDocumentMoniker": "BO\\CommonBO.cs",
+              "ToolTip": "E:\\Learning Asp-Angular\\task2\\user registartion\\UserAPI\\BO\\CommonBO.cs",
+              "RelativeToolTip": "BO\\CommonBO.cs",
+              "ViewState": "AgIAABIAAAAAAAAAAAAywBMAAAA3AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-22T20:50:11.267Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "CustomerController.cs",
+              "DocumentMoniker": "E:\\Learning Asp-Angular\\task2\\user registartion\\UserAPI\\Controllers\\CustomerController.cs",
+              "RelativeDocumentMoniker": "Controllers\\CustomerController.cs",
+              "ToolTip": "E:\\Learning Asp-Angular\\task2\\user registartion\\UserAPI\\Controllers\\CustomerController.cs",
+              "RelativeToolTip": "Controllers\\CustomerController.cs",
+              "ViewState": "AgIAAGcBAAAAAAAAAAAYwH0BAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-22T20:44:18.969Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

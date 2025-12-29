@@ -1,0 +1,213 @@
+<div class="container min-vh-100 d-flex align-items-center justify-content-center">
+  <div class="col-lg-10">
+    <div class="card shadow border-0 rounded-4">
+      <!-- HEADER -->
+      <div class="card-header bg-primary text-white text-center rounded-top-4 py-3">
+        <h3 class="mb-0">Customer Registration</h3>
+        <small>Create your account in a few steps</small>
+      </div>
+
+      <div class="card-body p-4">
+        <form [formGroup]="registerForm">
+          <div class="row">
+            <!-- LEFT : PROFILE IMAGE -->
+            <div class="col-md-4 text-center border-end">
+              <label for="" class="form-label fw-semibold d-block mb-2"> Profile Image </label>
+
+              <!-- PLACEHOLDER ICON -->
+              <div
+                *ngIf="!imagePreview"
+                class="rounded-circle d-flex align-items-center justify-content-center bg-light border shadow-sm"
+                style="width: 170px; height: 170px"
+              >
+                <i class="bi bi-person-fill text-secondary" style="font-size: 80px"></i>
+              </div>
+
+              <!-- IMAGE PREVIEW -->
+              <img
+                *ngIf="imagePreview"
+                [src]="imagePreview"
+                class="img-thumbnail rounded-circle shadow-sm"
+                width="170"
+                height="170"
+                alt=""
+              />
+
+              <input
+                #fileInput
+                type="file"
+                class="form-control mt-2"
+                accept=".jpg,.jpeg,.png"
+                (change)="onImageSelect($event)"
+              />
+
+              <small class="text-muted d-block mt-1"> JPG / PNG • Max 2MB </small>
+
+              <small class="text-danger d-block mt-1" *ngIf="imageError">
+                {{ imageError }}
+              </small>
+            </div>
+
+            <!-- RIGHT : FORM -->
+            <div class="col-md-8">
+              <!-- NAME -->
+              <div class="mb-3">
+                <label for="" class="form-label fw-semibold">Full Name</label>
+                <input type="text" class="form-control" formControlName="name" />
+                <small class="text-danger" *ngIf="hasError('name')">
+                  <span *ngIf="hasError('name', 'required')">Name is required</span>
+                  <span *ngIf="hasError('name', 'pattern')">Only letters allowed</span>
+                </small>
+              </div>
+
+              <!-- ADDRESS -->
+              <div class="mb-3">
+                <label for="" class="form-label fw-semibold">Address</label>
+                <textarea class="form-control" rows="2" formControlName="address"></textarea>
+                <small class="text-danger" *ngIf="hasError('address', 'required')">
+                  Address is required
+                </small>
+              </div>
+
+              <div class="row">
+                <!-- EMAIL -->
+                <div class="col-md-6 mb-3">
+                  <label for="" class="form-label fw-semibold">Email</label>
+                  <input type="email" class="form-control" formControlName="email" (keyup)="onKeyUpEmailMobile()" />
+                  <small class="text-danger" *ngIf="hasError('email')">
+                    <span *ngIf="hasError('email', 'required')">Email is required</span>
+                    <span *ngIf="hasError('email', 'email')">Invalid email format</span>
+                  </small>
+                  <small class="text-danger" *ngIf="emailExists"> Email already registered </small>
+                </div>
+
+                <!-- MOBILE -->
+                <div class="col-md-6 mb-3">
+                  <label for="" class="form-label fw-semibold">Mobile</label>
+                  <input type="text" class="form-control" formControlName="mobile" (keyup)="onKeyUpEmailMobile()" />
+                  <small class="text-danger" *ngIf="hasError('mobile')">
+                    <span *ngIf="hasError('mobile', 'required')">Mobile is required</span>
+                    <span *ngIf="hasError('mobile', 'pattern')">Must be 10 digits</span>
+                  </small>
+                  <small class="text-danger" *ngIf="mobileExists">
+                    Mobile already registered
+                  </small>
+                </div>
+
+                <!-- POSTCODE -->
+                <div class="col-md-6 mb-3">
+                  <label for="" class="form-label fw-semibold">Post Code</label>
+                  <input type="text" class="form-control" formControlName="postcode" />
+                  <small class="text-danger" *ngIf="hasError('postcode')">
+                    <span *ngIf="hasError('postcode', 'required')">Post code is required</span>
+                    <span *ngIf="hasError('postcode', 'pattern')">Must be 6 digits</span>
+                  </small>
+                </div>
+
+                <!-- GENDER -->
+                <div class="col-md-6 mb-3">
+                  <label for="" class="form-label fw-semibold d-block">Gender</label>
+
+                  <div class="form-check form-check-inline">
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      value="Male"
+                      formControlName="gender"
+                    />
+                    <label for="" class="form-check-label">Male</label>
+                  </div>
+
+                  <div class="form-check form-check-inline">
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      value="Female"
+                      formControlName="gender"
+                    />
+                    <label for="" class="form-check-label">Female</label>
+                  </div>
+
+                  <small class="text-danger d-block" *ngIf="hasError('gender', 'required')">
+                    Please select gender
+                  </small>
+                </div>
+
+                <!-- PASSWORD -->
+                <div class="col-md-6 mb-3">
+                  <label for="" class="form-label fw-semibold">Password</label>
+                  <input
+                    type="password"
+                    class="form-control"
+                    formControlName="passwordHash"
+                    (keyup)="checkPasswordStrength()"
+                  />
+
+                  <small class="text-danger d-block" *ngIf="hasError('passwordHash', 'required')">
+                    Password is required
+                  </small>
+                  <small class="text-danger d-block" *ngIf="hasError('passwordHash', 'minlength')">
+                    Minimum 8 characters required
+                  </small>
+                  <small class="text-danger d-block" *ngIf="hasError('passwordHash', 'pattern')">
+                    Must include uppercase, lowercase, number & special character
+                  </small>
+
+                  <small
+                    *ngIf="passwordStrength"
+                    [ngClass]="{
+                      'text-danger': passwordStrength === 'Weak',
+                      'text-warning': passwordStrength === 'Medium',
+                      'text-success': passwordStrength === 'Strong'
+                    }"
+                  >
+                    Password Strength: {{ passwordStrength }}
+                  </small>
+                </div>
+
+                <!-- CONFIRM PASSWORD -->
+                <div class="col-md-6 mb-3">
+                  <label for="" class="form-label fw-semibold">Confirm Password</label>
+                  <input type="password" class="form-control" formControlName="confirmPassword" />
+
+                  <small
+                    class="text-danger d-block"
+                    *ngIf="hasError('confirmPassword', 'required')"
+                  >
+                    Confirm password is required
+                  </small>
+
+                  <small
+                    class="text-danger d-block"
+                    *ngIf="registerForm.errors?.['passwordMismatch'] && (registerForm.get('confirmPassword')?.touched || registerForm.get('confirmPassword')?.dirty)"
+                  >
+                    Password and Confirm Password do not match
+                  </small>
+                </div>
+              </div>
+
+              <!-- FOOTER -->
+              <div class="d-flex justify-content-between align-items-center mt-4">
+                <div>
+                  <span class="text-muted">Already registered?</span>
+                  <a routerLink="/login" class="fw-semibold text-decoration-none ms-1">
+                    Sign in here
+                  </a>
+                </div>
+
+                <div>
+                  <button [disabled]="emailExists || mobileExists" class="btn btn-primary px-4" type="button" (click)="addCustomerData()">
+                    Register
+                  </button>
+                  <button class="btn btn-outline-secondary ms-2" type="button" (click)="onReset()">
+                    Reset
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

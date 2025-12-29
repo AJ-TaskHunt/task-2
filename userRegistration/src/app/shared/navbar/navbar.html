@@ -1,0 +1,28 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary px-3">
+  <a class="navbar-brand fw-bold" routerLink="/dashboard">MyApp</a>
+
+  <div class="ms-auto" *ngIf="userName">
+    <div class="dropdown">
+      <a
+        class="nav-link dropdown-toggle text-white"
+        role="button"
+        data-bs-toggle="dropdown"
+        
+      >
+        {{ userName }}
+      </a>
+
+      <ul class="dropdown-menu dropdown-menu-end">
+        <li>
+          <a class="dropdown-item" routerLink="/myProfile">My Profile</a>
+        </li>
+        <li><hr class="dropdown-divider" /></li>
+        <li>
+          <button class="dropdown-item text-danger" (click)="logout()">
+            Logout
+          </button>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

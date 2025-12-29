@@ -1,0 +1,115 @@
+<!-- header -->
+<header id="header" class="header fixed-top d-flex align-items-center">
+  <div class="d-flex align-items-center justify-content-between">
+    <a href="#" class="logo d-flex align-items-center">
+      <img
+        src="https://dummyimage.com/200x40/9c98a5/e3e3e3.png"
+        alt="logo"
+        width="200px"
+        height="40px"
+      />
+    </a>
+    <i class="bi bi-list toggle-sidebar-btn" (click)="toggleSidebar()"></i>
+  </div>
+
+  <nav class="header-nav ms-auto">
+    <ul class="d-flex align-items-center">
+      <li class="nav-item dropdown pe-3">
+        <a
+          class="nav-link nav-profile d-flex align-items-center pe-0"
+          href="#"
+          data-bs-toggle="dropdown"
+        >
+          <img
+            src="https://dummyimage.com/400x400/444444/d3d3d3.png"
+            alt="avatar"
+            class="rounded-circle"
+          />
+          <span class="d-none d-md-block dropdown-toggle ps-2">{{userName}}</span>
+        </a>
+        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+          <li class="dropdown-header">
+            <h6>{{userName}}</h6>
+          </li>
+          <li>
+            <hr class="dropdown-divider" />
+          </li>
+          <!-- <li>
+            <a class="dropdown-item d-flex align-items-center" href="#">
+              <i class="bi bi-person"></i>
+              <span>My Profile</span>
+            </a>
+          </li> -->
+          <li>
+            <hr class="dropdown-divider" />
+          </li>
+          <!-- <li>
+            <a class="dropdown-item d-flex align-items-center" href="#">
+              <i class="bi bi-gear"></i>
+              <span>Account Settings</span>
+            </a>
+          </li> -->
+          <li>
+            <hr class="dropdown-divider" />
+          </li>
+          <li>
+            <button type="button" class="dropdown-item d-flex align-items-center" (click)="logout()">
+              <i class="bi bi-box-arrow-right"></i>
+              <span>Sign Out</span>
+            </button>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+</header>
+<!-- header ends -->
+
+<!-- sidebar -->
+<aside id="sidebar" class="sidebar">
+  <ul class="sidebar-nav" id="sidebar-nav">
+    <li class="nav-item">
+      <a routerLink="/admin" class="nav-link active">
+        <i class="bi bi-house-door-fill"></i>
+        <span>Dashboard</span>
+      </a>
+    </li>
+
+    <li class="nav-item">
+      <a routerLink="add-customer" class="nav-link">
+        <i class="bi bi-amd"></i>
+        <span>Add Customer</span>
+      </a>
+    </li>
+
+    <li class="nav-item">
+      <a href="#" class="nav-link">
+        <i class="bi bi-alexa"></i>
+        <span>Alexa</span>
+      </a>
+    </li>
+
+    <li class="nav-item">
+      <a href="#" class="nav-link">
+        <i class="bi bi-amazon"></i>
+        <span>Amazon</span>
+      </a>
+    </li>
+
+    <li class="nav-heading">Settings</li>
+
+    <li class="nav-item">
+      <a href="#" class="nav-link">
+        <i class="bi bi-alipay"></i>
+        <span>Alipay</span>
+      </a>
+    </li>
+  </ul>
+</aside>
+<!-- sidebar ends -->
+
+<!-- main -->
+<main id="main">
+  <router-outlet></router-outlet>
+</main>
+<!-- main ends -->
